@@ -3,9 +3,101 @@
 
 <head>
   <title>Puzzle-Path</title>
+  <meta>
 </head>
 
-<body>
+<body onload="startGame()">
+  <header>
+    <h1 id="myH1">Play our game!</h1>
+  </header>
+  <script>
+    var game00;
+
+    function startGame() {
+      myGameArea.start();
+      game00 = new component(20, 20, "red", 15, 15);
+      myGameArea.clear();
+    }
+
+    var myGameArea = {
+      canvas: document.createElement("canvas"),
+      start: function() {
+        this.canvas.width = 250;
+        this.canvas.height = 150;
+        this.context = this.canvas.getContext("2d");
+        this.context.fillStyle = '#00FF00';
+        this.context.fillRect(0, 0, 450, 250);
+        this.context.moveTo(0, 50);
+        this.context.lineTo(480, 50);
+        this.context.stroke();
+        this.context.moveTo(0, 100);
+        this.context.lineTo(480, 100);
+        this.context.stroke();
+        this.context.moveTo(0, 150);
+        this.context.lineTo(480, 150);
+        this.context.stroke();
+        this.context.moveTo(50, 0);
+        this.context.lineTo(50, 250);
+        this.context.stroke();
+        // this.canvas.addEventListener("click", function() {
+        //   alert("Hello World");
+        // });
+        var h = document.getElementById("myH1");
+        document.body.insertAdjacentElement("afterend", this.canvas);
+        this.interval = setInterval(updateGameArea, 10000);
+      },
+      clear: function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      }
+    }
+
+    function component(width, height, color, x, y) {
+      this.width = width;
+      this.height = height;
+      this.posX = 3;
+      this.posY = 3;
+      this.x = x;
+      this.y = y;
+      ctx = myGameArea.context;
+      ctx.fillStyle = color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+      }
+      this.newPos = function() {
+        this.x += this.posX;
+        this.y += this.posY;
+      }
+    }
+
+    function updateGameArea() {
+      myGameArea.clear();
+      myGamePiece.newPos();
+      myGamePiece.update();
+    }
+
+    // function moveup() {
+    //   myGamePiece.posY -= 1;
+    // }
+    //
+    // function movedown() {
+    //   myGamePiece.posY += 1;
+    // }
+    //
+    // function moveleft() {
+    //   myGamePiece.posX -= 1;
+    // }
+    //
+    // function moveright() {
+    //   myGamePiece.posX += 1;
+    // }
+  </script>
+  <button onclick="moveup()">UP</button>
+  <button onclick="movedown()">DOWN</button>
+  <button onclick="moveleft()">LEFT</button>
+  <button onclick="moveright()">RIGHT</button>
 </body>
 
-<html>
+</html>
