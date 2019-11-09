@@ -19,84 +19,6 @@ function pointsEqual(p1,p2){
   else return false
 }
 
-function genPuzzle1(){
-  //P1 = [1,0]
-  //P2 = [2,0]
-  WIN_CONDITION = [[0,0],[0,2]]
-
-  tile = new Array(dim);
-  for(var i = 0; i < dim; i++)
-    tile[i] = new Array(dim);
-  tile[0][0] = {left:[0,2], right:[0,0], up:[2,0], down:[1,0]}
-  tile[0][1] = {left:[0,1], right:[0,1], up:[1,2], down:[1,1]}
-  tile[0][2] = {left:[0,2], right:[0,2], up:[0,0], down:[1,2]}
-  tile[1][0] = {left:[1,0], right:[1,0], up:[0,0], down:[2,0]}
-  tile[1][1] = {left:[1,1], right:[1,1], up:[0,1], down:[2,1]}
-  tile[1][2] = {left:[1,2], right:[0,1], up:[0,2], down:[1,2]}
-  tile[2][0] = {left:[2,2], right:[2,0], up:[1,0], down:[0,0]}
-  tile[2][1] = {left:[2,1], right:[2,2], up:[1,1], down:[2,1]}
-  tile[2][2] = {left:[2,1], right:[2,0], up:[2,2], down:[2,2]}
-
-  return tile
-}
-
-function genPuzzle2(){
-  WIN_CONDITION = [[0,0],[0,2]]
-
-  tile = new Array(dim);
-  for(var i = 0; i < dim; i++)
-    tile[i] = new Array(dim);
-
-  tile[0][0] = {left:[3,1], right:[0,0], up:[2,3], down:[1,0]}
-  tile[0][1] = {left:[0,1], right:[0,1], up:[3,0], down:[1,1]}
-  tile[0][2] = {left:[0,2], right:[0,2], up:[1,3], down:[1,2]}
-  tile[0][3] = {left:[0,3], right:[0,3], up:[3,2], down:[1,3]}
-
-  tile[1][0] = {left:[1,0], right:[1,1], up:[0,0], down:[2,0]}
-  tile[1][1] = {left:[1,0], right:[1,1], up:[0,1], down:[1,1]}
-  tile[1][2] = {left:[1,2], right:[1,2], up:[0,2], down:[2,2]}
-  tile[1][3] = {left:[1,3], right:[0,2], up:[0,3], down:[1,3]}
-
-  tile[2][0] = {left:[2,0], right:[2,0], up:[1,0], down:[3,0]}
-  tile[2][1] = {left:[2,1], right:[2,2], up:[2,1], down:[3,1]}
-  tile[2][2] = {left:[2,1], right:[2,3], up:[1,2], down:[2,2]}
-  tile[2][3] = {left:[2,2], right:[0,0], up:[2,3], down:[2,3]}
-
-  tile[3][0] = {left:[0,1], right:[3,0], up:[2,0], down:[3,3]}
-  tile[3][1] = {left:[3,1], right:[3,1], up:[2,1], down:[0,0]}
-  tile[3][2] = {left:[3,2], right:[3,3], up:[3,2], down:[0,3]}
-  tile[3][3] = {left:[3,2], right:[3,0], up:[3,3], down:[3,3]}
-
-  return tile
-}
-
-function genArena(){
-  WIN_CONDITION = [[1,2],[0,2]]
-
-  tile = new Array(dim);
-  for(var i = 0; i < dim; i++){
-    tile[i] = new Array(dim);
-    for(var j = 0; j < dim; j++){
-      if(i == 0){
-        if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i,j], down:[i+1,j]}
-        else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i,j], down:[i+1,j]}
-        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i,j], down:[i+1,j]}
-      }
-      else if (i == dim-1){
-        if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i-1,j], down:[i,j]}
-        else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i-1,j], down:[i,j]}
-        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i,j]}
-      }
-      else {
-        if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
-        else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i-1,j], down:[i+1,j]}
-        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
-      }
-    }
-  }
-  return tile
-}
-
 function genSphere(){
   tile = new Array(dim);
   for(var i = 0; i < dim; i++) {
@@ -155,7 +77,7 @@ var myGameArea = {
         this.context.strokeStyle = "black";
         this.context.stroke();
     },
-    tile : genArena(),
+    tile : genSphere(),
     makeMove : function (dir) {
       var temp1 = this.tile[this.P1.i][this.P1.j][dir]
       var temp2 = this.tile[this.P2.i][this.P2.j][dir]
