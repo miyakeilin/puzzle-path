@@ -38,9 +38,9 @@
         this.context.moveTo(50, 0);
         this.context.lineTo(50, 250);
         this.context.stroke();
-        this.canvas.addEventListener("click", function() {
-          alert("Hello World");
-        });
+        // this.canvas.addEventListener("click", function() {
+        //   alert("Hello World");
+        // });
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
@@ -51,9 +51,9 @@
       this.height = height;
       // this.x = x;
       // this.y = y;
-      // ctx = myGameArea.context;
-      // ctx.fillStyle = color;
-      // ctx.fillRect(this.x, this.y, this.width, this.height);
+      ctx = myGameArea.context;
+      ctx.fillStyle = color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
       this.speedX = 0;
       this.speedY = 0;
       this.x = x;
