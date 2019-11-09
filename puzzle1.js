@@ -139,7 +139,6 @@ var myGameArea = {
     }
     this.context.stroke()
 
-
     this.context.beginPath()
     this.context.lineWidth = 3;
     this.context.strokeStyle = '#000';
@@ -174,7 +173,6 @@ var myGameArea = {
     this.context.fillText("1", tileSize * 3 - 10, tileSize * 3 - tileSize / 2);
 
     this.context.stroke();
-
 
 
     this.context.beginPath()
