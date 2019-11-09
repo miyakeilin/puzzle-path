@@ -35,6 +35,9 @@
         this.context.moveTo(50, 0);
         this.context.lineTo(50, 250);
         this.context.stroke();
+        this.canvas.addEventListener("click", function() {
+          alert("Hello World");
+        });
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
