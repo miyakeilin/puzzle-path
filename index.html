@@ -45,10 +45,12 @@
         // });
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
-        clear: function() {
-          this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }
+      },
+      clear: function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
       }
+
+    }
     }
     }
 
