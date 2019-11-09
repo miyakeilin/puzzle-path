@@ -24,7 +24,10 @@
         this.context.fillStyle = '#FF0000';
         this.context.fillRect(0, 0, 480, 250);
         this.context.moveTo(0, 50);
-        this.context.lineTo(480, 10);
+        this.context.lineTo(480, 50);
+        this.context.stroke();
+        this.context.moveTo(0, 100);
+        this.context.lineTo(480, 100);
         this.context.stroke();
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
