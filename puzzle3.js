@@ -167,9 +167,6 @@ var myGameArea = {
        this.context.moveTo(tileSize * 1, tileSize * 3);
        this.context.lineTo(tileSize * 5, tileSize * 3);
 
-       this.context.moveTo(tileSize * 2, tileSize * 2);
-       this.context.lineTo(tileSize * 3, tileSize * 2);
-
        this.context.moveTo(tileSize * 2, tileSize * 4);
        this.context.lineTo(tileSize * 4, tileSize * 4);
 
