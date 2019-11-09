@@ -127,13 +127,14 @@ var myGameArea = {
   },
   draw: function() {
 
-    this.context.moveTo(5, 5);
+    this.context.moveTo(5, 0);
     this.context.lineTo(5, tileSize * 3);
     this.context.moveTo(5, 5);
     this.context.lineTo(tileSize * 3, 5);
-    this.context.moveTo(tileSize * 3, tileSize * 3);
-    this.context.lineTo(5, tileSize * 3);
-    this.context.moveTo(tileSize * 3, tileSize * 5);
+    this.context.moveTo(tileSize * 3, tileSize * 3 - 5);
+    this.context.lineTo(5, tileSize * 3 - 5);
+    this.context.moveTo(tileSize * 3 - 5, 5);
+    this.context.lineTo(tileSize * 3 - 5, tileSize * 3 - 5);
     this.context.strokeStyle = "black";
     this.context.lineWidth = 10;
     this.context.stroke();
