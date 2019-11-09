@@ -44,7 +44,7 @@ function genPuzzle2(){
   tile[0][0] = {left:[3,1], right:[0,0], up:[2,3], down:[1,0]}
   tile[0][1] = {left:[0,1], right:[0,1], up:[3,0], down:[1,1]}
   tile[0][2] = {left:[0,2], right:[0,2], up:[1,3], down:[1,2]}
-  tile[0][3] = {left:[0,2], right:[0,2], up:[3,2], down:[1,3]}
+  tile[0][3] = {left:[0,3], right:[0,3], up:[3,2], down:[1,3]}
 
   tile[1][0] = {left:[1,0], right:[1,1], up:[0,0], down:[2,0]}
   tile[1][1] = {left:[1,0], right:[1,1], up:[0,1], down:[1,1]}
@@ -59,7 +59,7 @@ function genPuzzle2(){
   tile[3][0] = {left:[0,1], right:[3,0], up:[2,0], down:[3,3]}
   tile[3][1] = {left:[3,1], right:[3,1], up:[2,1], down:[0,0]}
   tile[3][2] = {left:[3,2], right:[3,3], up:[3,2], down:[0,3]}
-  tile[3][3] = {left:[3,2], right:[3,0], up:[2,3], down:[3,3]}
+  tile[3][3] = {left:[3,2], right:[3,0], up:[3,3], down:[3,3]}
 
   return tile
 }
