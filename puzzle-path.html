@@ -48,7 +48,8 @@
 
             function startGame() {
                 myGameArea.start();
-                myGamePiece = new component(playerSize,playerSize,"red",0,0);
+                myGamePiece = new component(playerSize,playerSize,"red",1,1);
+                myGamePiece2 = new component(playerSize,playerSize,"blue",0,0);
             }   
 
             var myGameArea = {
@@ -60,7 +61,7 @@
                     myGameArea.draw(); // Function is later in the class, draws the borders
 
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]); //idk
-                    this.interval = setInterval(updateGameArea, 20);
+                    //this.interval = setInterval(updateGameArea, 20);
                 },
                 clear : function() {
                     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -76,44 +77,49 @@
                     }
                     this.context.strokeStyle = "black";
                     this.context.stroke();
+                    this.interval = setInterval(updateGameArea, 100);
                 }
             }
 
-            function component(width, height, color, y, x) {
+            function component(width, height, color, j, i) {
                 this.width = width;
                 this.height = height;
-                this.i = x;
-                this.j = y;
-                this.x = coordPos(x);
-                this.y = coordPos(y);
+                this.i = i;
+                this.j = j;
+                this.x = coordPos(i);
+                this.y = coordPos(j);
                 this.update = function() {
                     ctx = myGameArea.context;
                     ctx.fillStyle = color;
                     ctx.fillRect(this.x, this.y, this.width, this.height);
                 }
                 this.newPos = function(dir) {
-                    if (dir == "up") {
-                        this.j -= 1;
-                        this.y = coordPos(this.j);
-                    } else if (dir == "down") {
-                        this.j += 1;
-                        this.y = coordPos(this.j);
-                    } else if (dir == "left") {
-                        this.i -= 1;
-                        this.x = coordPos(this.i);
-                    } else if (dir == "right") {
-                        this.i += 1;
-                        this.x = coordPos(this.i);
-                    } else {
-                        // stay the same position
-                    }
+                        if (dir == "up") {
+                            this.j -= 1;
+                            this.y = coordPos(this.j);
+                        } else if (dir == "down") {
+                            this.j += 1;
+                            this.y = coordPos(this.j);
+                        } else if (dir == "left") {
+                            this.i -= 1;
+                            this.x = coordPos(this.i);
+                        } else if (dir == "right") {
+                            this.i += 1;
+                            this.x = coordPos(this.i);                        
+                        } else {
+                            // stay the same position
+                        }
                 }
             }
 
             function updateGameArea(direction) {
                 myGameArea.clear();
+                // Red game piece movement
                 myGamePiece.newPos(direction);
                 myGamePiece.update();
+                // Blue game piece movement
+                myGamePiece2.newPos(direction);
+                myGamePiece2.update();
                 myGameArea.draw();
             }
 
