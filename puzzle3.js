@@ -125,7 +125,56 @@ var myGameArea = {
       this.context.stroke()
 
       this.context.beginPath()
-      //ADD WALLS HERE
+      this.context.lineWidth = 10
+       // vertical
+       this.context.moveTo(0 + 5, 0);
+       this.context.lineTo(0 + 5, tileSize * 2);
+
+       this.context.moveTo(0 + 5, tileSize * 3);
+       this.context.lineTo(0 + 5, tileSize * 5);
+
+       this.context.moveTo(tileSize, 0);
+       this.context.lineTo(tileSize, tileSize * 2);
+
+       this.context.moveTo(tileSize, tileSize * 3);
+       this.context.lineTo(tileSize, tileSize * 5);
+
+       this.context.moveTo(tileSize * 2, 0);
+       this.context.lineTo(tileSize * 2, tileSize);
+
+       this.context.moveTo(tileSize * 3, tileSize);
+       this.context.lineTo(tileSize * 3, tileSize*2);
+
+       this.context.moveTo(tileSize * 4, tileSize * 4);
+       this.context.lineTo(tileSize * 4, tileSize * 5);
+
+       this.context.moveTo(tileSize * 5 - 5, tileSize * 4);
+       this.context.lineTo(tileSize * 5 - 5, tileSize * 5);
+
+       // horizontal
+       this.context.moveTo(tileSize * 3, 5);
+       this.context.lineTo(tileSize * 5, 5);
+
+       this.context.moveTo(tileSize * 3, tileSize);
+       this.context.lineTo(tileSize * 5, tileSize);
+
+       this.context.moveTo(tileSize * 1, tileSize * 2);
+       this.context.lineTo(tileSize * 3, tileSize * 2);
+
+       this.context.moveTo(tileSize * 4, tileSize * 2);
+       this.context.lineTo(tileSize * 5, tileSize * 2);
+
+       this.context.moveTo(tileSize * 1, tileSize * 3);
+       this.context.lineTo(tileSize * 5, tileSize * 3);
+
+       this.context.moveTo(tileSize * 2, tileSize * 2);
+       this.context.lineTo(tileSize * 3, tileSize * 2);
+
+       this.context.moveTo(tileSize * 2, tileSize * 4);
+       this.context.lineTo(tileSize * 4, tileSize * 4);
+
+       this.context.moveTo(tileSize * 2, tileSize * 5 - 5);
+       this.context.lineTo(tileSize * 3, tileSize * 5 - 5);
       this.context.stroke();
     },
     tile : genPuzzle2(),
