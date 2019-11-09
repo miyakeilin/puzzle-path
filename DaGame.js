@@ -91,7 +91,7 @@ function genArena(){
   return tile
 }
 
-function genTorus(){
+function genSphere(){
   tile = new Array(dim);
   for(var i = 0; i < dim; i++) {
     tile[i] = new Array(dim);
@@ -148,7 +148,7 @@ var myGameArea = {
         this.context.strokeStyle = "black";
         this.context.stroke();
     },
-    tile : genPuzzle1(),
+    tile : genSphere(),
     makeMove : function (dir) {
       var temp = this.tile[this.P1.i][this.P1.j][dir] //IF UP DOWN LEFT PROBLEM MAYBE SWITCH I AND J?
       this.P1.i = temp[0]
