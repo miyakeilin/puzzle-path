@@ -11,13 +11,15 @@
     <h1 id="myH1">Play our game!</h1>
   </header>
   <script>
+    var game00;
+
     function startGame() {
-      myGameArea.start();
       game00 = new component(20, 20, "red", 15, 15);
+      myGameArea.start();
       //game01 = new component(50, 50, "blue", 0, 50);
       //game02 = new component(50, 50, "white", 0, 100);
     }
-    var myGamePiece;
+
     var myGameArea = {
       canvas: document.createElement("canvas"),
       start: function() {
@@ -49,6 +51,8 @@
     function component(width, height, color, x, y) {
       this.width = width;
       this.height = height;
+      this.speedX = 0;
+      this.speedY = 0;
       this.x = x;
       this.y = y;
       ctx = myGameArea.context;
