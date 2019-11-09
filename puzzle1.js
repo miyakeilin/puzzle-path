@@ -146,6 +146,9 @@ var myGameArea = {
     this.context.lineTo(tileSize * 3 - 5, tileSize);
     this.context.moveTo(tileSize, tileSize * 3 - 5);
     this.context.lineTo(tileSize * 3, tileSize * 3 - 5);
+
+    this.fillText("2", tileSize / 2, 3);
+    this.font = "30px Arial";
     this.context.strokeStyle = "black";
     this.context.lineWidth = 10;
     this.context.stroke();
