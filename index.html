@@ -54,6 +54,9 @@
       ctx = myGameArea.context;
       ctx.fillStyle = color;
       ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.addEventListener("click", function() {
+        alert("Hello World!");
+      });
     }
   </script>
 </body>
