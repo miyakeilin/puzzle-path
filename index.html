@@ -13,9 +13,9 @@
   <script>
     function startGame() {
       myGameArea.start();
-      game00 = new component(50, 50, "red", 0, 0);
-      game01 = new component(50, 50, "blue", 0, 50);
-      game02 = new component(50, 50, "white", 0, 100);
+      game00 = new component(20, 20, "red", 15, 15);
+      //game01 = new component(50, 50, "blue", 0, 50);
+      //game02 = new component(50, 50, "white", 0, 100);
     }
     var myGamePiece;
     var myGameArea = {
@@ -26,21 +26,21 @@
         this.context = this.canvas.getContext("2d");
         this.context.fillStyle = '#00FF00';
         this.context.fillRect(0, 0, 450, 250);
-        // this.context.moveTo(0, 50);
-        // this.context.lineTo(480, 50);
-        // this.context.stroke();
-        // this.context.moveTo(0, 100);
-        // this.context.lineTo(480, 100);
-        // this.context.stroke();
-        // this.context.moveTo(0, 150);
-        // this.context.lineTo(480, 150);
-        // this.context.stroke();
-        // this.context.moveTo(50, 0);
-        // this.context.lineTo(50, 250);
-        // this.context.stroke();
-        // this.canvas.addEventListener("click", function() {
-        //   alert("Hello World");
-        // });
+        this.context.moveTo(0, 50);
+        this.context.lineTo(480, 50);
+        this.context.stroke();
+        this.context.moveTo(0, 100);
+        this.context.lineTo(480, 100);
+        this.context.stroke();
+        this.context.moveTo(0, 150);
+        this.context.lineTo(480, 150);
+        this.context.stroke();
+        this.context.moveTo(50, 0);
+        this.context.lineTo(50, 250);
+        this.context.stroke();
+        this.canvas.addEventListener("click", function() {
+          alert("Hello World");
+        });
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
@@ -54,11 +54,50 @@
       ctx = myGameArea.context;
       ctx.fillStyle = color;
       ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.speedX = 0;
+      this.speedY = 0;
+      this.x = x;
+      this.y = y;
+      this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+      }
+      this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+      }
       // this.addEventListener("click", function() {
       //   alert("Hello World!");
       // });
     }
+
+    function updateGameArea() {
+      myGameArea.clear();
+      myGamePiece.newPos();
+      myGamePiece.update();
+    }
+
+    function moveup() {
+      myGamePiece.speedY -= 1;
+    }
+
+    function movedown() {
+      myGamePiece.speedY += 1;
+    }
+
+    function moveleft() {
+      myGamePiece.speedX -= 1;
+    }
+
+    function moveright() {
+      myGamePiece.speedX += 1;
+    }
   </script>
+  <button onclick="moveup()">UP</button>
+  <button onclick="movedown()">DOWN</button>
+  <button onclick="moveleft()">LEFT</button>
+  <button onclick="moveright()">RIGHT</button>
 </body>
 
 </html>
