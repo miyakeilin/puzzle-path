@@ -180,9 +180,9 @@ var myGameArea = {
 function updateGameArea(dir) {
     myGameArea.clear();
     myGameArea.makeMove(dir);
+    myGameArea.draw();
     myGameArea.P1.update();
     myGameArea.P2.update();
-    myGameArea.draw();
     if(gameFinished) document.getElementById("WIN").innerHTML = "YOU WIN!";
 }
 
