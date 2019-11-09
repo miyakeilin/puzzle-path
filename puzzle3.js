@@ -208,7 +208,6 @@ function coordPos(pos) {
 }
 
 var myGameArea = {
-<<<<<<< HEAD
   canvas: document.createElement("canvas"),
   start: function() {
     this.canvas.width = dim * tileSize;
@@ -257,6 +256,7 @@ var myGameArea = {
 
     this.context.beginPath()
     this.context.lineWidth = 10
+    this.context.strokeStyle = 'black'
     // vertical
     this.context.moveTo(0 + 5, 0);
     this.context.lineTo(0 + 5, tileSize * 2);
@@ -306,6 +306,10 @@ var myGameArea = {
 
     this.context.moveTo(tileSize * 2, tileSize * 5 - 5);
     this.context.lineTo(tileSize * 3, tileSize * 5 - 5);
+    this.context.stroke()
+
+    this.context.beginPath()
+    this.context.fillStyle = 'black'
 
     this.context.fillText("1", 5, tileSize * 3 - tileSize / 2);
     this.context.fillText("1", tileSize * 2 + tileSize / 2 - 5, 10);
@@ -347,124 +351,7 @@ var myGameArea = {
   },
   P1: new component(playerSize, playerSize, "red", 1, 0),
   P2: new component(playerSize, playerSize, "blue", 2, 0)
-=======
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = dim * tileSize;
-        this.canvas.height = dim * tileSize;
-        this.context = this.canvas.getContext("2d");
 
-        this.P1.update()
-        this.P2.update()
-        myGameArea.draw();
-
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        // this.interval = setInterval(updateGameArea, 20);
-    },
-    clear : function() {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },
-    draw : function() {
-      this.context.beginPath()
-      this.context.lineWidth = 1;
-      this.context.strokeStyle = '#000';
-      for (var p = 0; p <= this.canvas.width + tileSize; p += tileSize) {
-        this.context.moveTo(0.5 + p, 0);
-        this.context.lineTo(0.5 + p, this.canvas.height);
-      }
-      for (var p = 0; p <= this.canvas.height + tileSize; p += tileSize) {
-        this.context.moveTo(0, 0.5 + p);
-        this.context.lineTo(this.canvas.width, 0.5 + p);
-      }
-      this.context.stroke()
-
-      this.context.beginPath()
-      this.context.lineWidth = 1;
-      this.context.strokeStyle = '#000';
-      this.context.arc(tileSize / 2, tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
-      this.context.fillStyle = '#00cc66'
-      this.context.fill()
-      this.context.stroke()
-
-      this.context.beginPath()
-      this.context.lineWidth = 1;
-      this.context.strokeStyle = '#000';
-      this.context.arc(tileSize / 2 + (tileSize * 2), tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
-      this.context.fillStyle = '#00cc66'
-      this.context.fill()
-      this.context.stroke()
-
-      this.context.beginPath()
-      this.context.lineWidth = 10
-       // vertical
-       this.context.moveTo(0 + 5, 0);
-       this.context.lineTo(0 + 5, tileSize * 2);
-
-       this.context.moveTo(0 + 5, tileSize * 3);
-       this.context.lineTo(0 + 5, tileSize * 5);
-
-       this.context.moveTo(tileSize, 0);
-       this.context.lineTo(tileSize, tileSize * 2);
-
-       this.context.moveTo(tileSize, tileSize * 3);
-       this.context.lineTo(tileSize, tileSize * 5);
-
-       this.context.moveTo(tileSize * 2, 0);
-       this.context.lineTo(tileSize * 2, tileSize);
-
-       this.context.moveTo(tileSize * 3, tileSize);
-       this.context.lineTo(tileSize * 3, tileSize*2);
-
-       this.context.moveTo(tileSize * 4, tileSize * 4);
-       this.context.lineTo(tileSize * 4, tileSize * 5);
-
-       this.context.moveTo(tileSize * 5 - 5, tileSize * 4);
-       this.context.lineTo(tileSize * 5 - 5, tileSize * 5);
-
-       // horizontal
-       this.context.moveTo(tileSize * 3, 5);
-       this.context.lineTo(tileSize * 5, 5);
-
-       this.context.moveTo(tileSize * 3, tileSize);
-       this.context.lineTo(tileSize * 5, tileSize);
-
-       this.context.moveTo(tileSize * 1, tileSize * 2);
-       this.context.lineTo(tileSize * 3, tileSize * 2);
-
-       this.context.moveTo(tileSize * 4, tileSize * 2);
-       this.context.lineTo(tileSize * 5, tileSize * 2);
-
-       this.context.moveTo(tileSize * 1, tileSize * 3);
-       this.context.lineTo(tileSize * 5, tileSize * 3);
-
-       this.context.moveTo(tileSize * 2, tileSize * 4);
-       this.context.lineTo(tileSize * 4, tileSize * 4);
-
-       this.context.moveTo(tileSize * 2, tileSize * 5 - 5);
-       this.context.lineTo(tileSize * 3, tileSize * 5 - 5);
-      this.context.stroke();
-    },
-    tile : genPuzzle2(),
-    makeMove : function (dir) {
-      var temp1 = this.tile[this.P1.i][this.P1.j][dir]
-      var temp2 = this.tile[this.P2.i][this.P2.j][dir]
-      if(temp1[0] != temp2[0] || temp1[1] != temp2[1]){
-        this.P1.i = temp1[0]
-        this.P1.j = temp1[1]
-        this.P1.x = coordPos(this.P1.j)
-        this.P1.y = coordPos(this.P1.i)
-
-        this.P2.i = temp2[0]
-        this.P2.j = temp2[1]
-        this.P2.x = coordPos(this.P2.j)
-        this.P2.y = coordPos(this.P2.i)
-
-        checkGameOver()
-      }
-    },
-    P1 : new component(playerSize,playerSize,"red",1,0),
-    P2 : new component(playerSize,playerSize,"blue",2,0)
->>>>>>> 83b3bbb820fdbf1b380eb45cbdb1b55781bea35e
 }
 
 function updateGameArea(dir) {
