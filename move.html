@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Component move</title>
+  <style>
+    canvas {
+      background-color: aqua;
+      border: 1px solid red;
+    }
+
+    #container {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: yellow;
+    }
+
+    #animate {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: red;
+      /* left: 100px;
+      top: 100px; */
+    }
+  </style>
+</head>
+
+<body>
+  <button onclick="myMove(0)">UP</button>
+  <button onclick="myMove(1)">DOWN</button>
+  <button onclick="myMove(2)">LEFT</button>
+  <button onclick="myMove(3)">RIGHT</button>
+  <div id="container">
+    <div id="animate">
+    </div>
+  </div>
+  <script>
+    document.onkeydown = function(event) {
+      switch (event.keyCode) {
+        case 37:
+          myMove(3);
+          break;
+        case 38:
+          myMove(0);
+          break;
+        case 39:
+          myMove(2);
+          break;
+        case 40:
+          myMove(1);
+          break;
+      }
+    };
+
+    var elem = document.getElementById("animate");
+    var y = 0;
+    var x = 0;
+    var count = 0;
+
+    function myMove(dir) {
+      var id = setInterval(frame, 5);
+
+      function frame() {
+
+        if (count < 50) {
+          count++;
+          // UP
+          if (dir == 0) {
+            if (y == 0) {
+              clearInterval(id);
+            } else {
+              y = y - 1;
+              elem.style.top = y + "px";
+            }
+          } // DOWN
+          else if (dir == 1) {
+            if (y >= 350) {
+              clearInterval(id);
+            } else {
+              elem.style.top = y + "px";
+              y++;
+            }
+          } // RIGHT
+          else if (dir == 2) {
+            if (x >= 350) {
+              clearInterval(id);
+            } else {
+              elem.style.left = x + "px";
+              x++;
+            }
+          } // LEFT
+          else if (dir == 3) {
+            if (x == 0) {
+              clearInterval(id);
+            } else {
+              x = x - 1;
+              elem.style.left = x + "px";
+            }
+          }
+        } else {
+          count = 0;
+          clearInterval(id);
+        }
+      }
+    }
+  </script>
+
+</body>
+
+</html>
