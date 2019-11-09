@@ -20,9 +20,9 @@
       start: function() {
         this.canvas.width = 480;
         this.canvas.height = 270;
-        var ctx = this.canvas.getContext("2d");
-        ctx.fillStyle = '#FF0000';
-        ctx.fillRect(0, 0, 150, 75);
+        this.context = this.canvas.getContext("2d");
+        this.context.fillStyle = '#FF0000';
+        this.context.fillRect(0, 0, 150, 75);
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
