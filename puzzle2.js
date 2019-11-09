@@ -21,75 +21,6 @@ function pointsEqual(p1, p2) {
   else return false
 }
 
-function genPuzzle1() {
-  //P1 = [1,0]
-  //P2 = [2,0]
-  WIN_CONDITION = [
-    [0, 0],
-    [0, 2]
-  ]
-
-  tile = new Array(dim);
-  for (var i = 0; i < dim; i++)
-    tile[i] = new Array(dim);
-  tile[0][0] = {
-    left: [0, 2],
-    right: [0, 0],
-    up: [2, 0],
-    down: [1, 0]
-  }
-  tile[0][1] = {
-    left: [0, 1],
-    right: [0, 1],
-    up: [1, 2],
-    down: [1, 1]
-  }
-  tile[0][2] = {
-    left: [0, 2],
-    right: [0, 2],
-    up: [0, 0],
-    down: [1, 2]
-  }
-  tile[1][0] = {
-    left: [1, 0],
-    right: [1, 0],
-    up: [0, 0],
-    down: [2, 0]
-  }
-  tile[1][1] = {
-    left: [1, 1],
-    right: [1, 1],
-    up: [0, 1],
-    down: [2, 1]
-  }
-  tile[1][2] = {
-    left: [1, 2],
-    right: [0, 1],
-    up: [0, 2],
-    down: [1, 2]
-  }
-  tile[2][0] = {
-    left: [2, 2],
-    right: [2, 0],
-    up: [1, 0],
-    down: [0, 0]
-  }
-  tile[2][1] = {
-    left: [2, 1],
-    right: [2, 2],
-    up: [1, 1],
-    down: [2, 1]
-  }
-  tile[2][2] = {
-    left: [2, 1],
-    right: [2, 0],
-    up: [2, 2],
-    down: [2, 2]
-  }
-
-  return tile
-}
-
 function genPuzzle2() {
   WIN_CONDITION = [
     [0, 0],
@@ -203,95 +134,6 @@ function genPuzzle2() {
   return tile
 }
 
-function genArena() {
-  WIN_CONDITION = [
-    [1, 2],
-    [0, 2]
-  ]
-
-  tile = new Array(dim);
-  for (var i = 0; i < dim; i++) {
-    tile[i] = new Array(dim);
-    for (var j = 0; j < dim; j++) {
-      if (i == 0) {
-        if (j == 0) tile[i][j] = {
-          left: [i, j],
-          right: [i, j + 1],
-          up: [i, j],
-          down: [i + 1, j]
-        }
-        else if (j == dim - 1) tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j],
-          up: [i, j],
-          down: [i + 1, j]
-        }
-        else tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j + 1],
-          up: [i, j],
-          down: [i + 1, j]
-        }
-      } else if (i == dim - 1) {
-        if (j == 0) tile[i][j] = {
-          left: [i, j],
-          right: [i, j + 1],
-          up: [i - 1, j],
-          down: [i, j]
-        }
-        else if (j == dim - 1) tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j],
-          up: [i - 1, j],
-          down: [i, j]
-        }
-        else tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j + 1],
-          up: [i - 1, j],
-          down: [i, j]
-        }
-      } else {
-        if (j == 0) tile[i][j] = {
-          left: [i, j],
-          right: [i, j + 1],
-          up: [i - 1, j],
-          down: [i + 1, j]
-        }
-        else if (j == dim - 1) tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j],
-          up: [i - 1, j],
-          down: [i + 1, j]
-        }
-        else tile[i][j] = {
-          left: [i, j - 1],
-          right: [i, j + 1],
-          up: [i - 1, j],
-          down: [i + 1, j]
-        }
-      }
-    }
-  }
-  return tile
-}
-
-function genSphere() {
-  tile = new Array(dim);
-  for (var i = 0; i < dim; i++) {
-    tile[i] = new Array(dim);
-    for (var j = 0; j < dim; j++) {
-      tile[i][j] = {
-        left: [i, (j + (dim - 1)) % dim],
-        right: [i, (j + 1) % dim],
-        up: [(i + (dim - 1)) % dim, j],
-        down: [(i + 1) % dim, j]
-      }
-    }
-  }
-  return tile
-}
-
 function component(width, height, color, i, j) {
   this.width = width;
   this.height = height;
@@ -328,16 +170,39 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   draw: function() {
-    // for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
-    //     this.context.moveTo(0.5 + p, 0);
-    //     this.context.lineTo(0.5 + p, this.canvas.height);
-    // }
-    // for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
-    //     this.context.moveTo(0, 0.5 + p);
-    //     this.context.lineTo(this.canvas.width, 0.5 + p);
-    // }
-    // this.context.strokeStyle = "black";
-    // this.context.stroke();
+    this.context.beginPath()
+    this.context.strokeStyle = "black";
+    this.context.lineWidth = 1
+    for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
+        this.context.moveTo(0.5 + p, 0);
+        this.context.lineTo(0.5 + p, this.canvas.height);
+    }
+    for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
+        this.context.moveTo(0, 0.5 + p);
+        this.context.lineTo(this.canvas.width, 0.5 + p);
+    }
+    this.context.stroke();
+
+    this.context.beginPath()
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = '#000';
+    this.context.arc(tileSize / 2, tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
+    this.context.fillStyle = '#00cc66'
+    this.context.fill()
+    this.context.stroke()
+
+    this.context.beginPath()
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = '#000';
+    this.context.arc(tileSize / 2 + (tileSize * 2), tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
+    this.context.fillStyle = '#00cc66'
+    this.context.fill()
+    this.context.stroke()
+
+    this.context.beginPath()
+    this.context.strokeStyle = "black";
+    this.context.lineWidth = 10;
+
     this.context.moveTo(5, tileSize);
     this.context.lineTo(5, tileSize * 3);
 
@@ -374,6 +239,13 @@ var myGameArea = {
     this.context.moveTo(tileSize * 3, tileSize * 4 - 5);
     this.context.lineTo(tileSize * 4, tileSize * 4 - 5);
 
+    this.context.stroke();
+
+    this.context.beginPath()
+    this.context.fillStyle = "black";
+    this.context.lineWidth = 10;
+    this.context.font = "10px Arial";
+
     this.context.fillText("1", 5, tileSize / 2);
     this.context.fillText("1", tileSize * 2 - tileSize / 2 - 5, tileSize * 4 - 5);
 
@@ -392,12 +264,8 @@ var myGameArea = {
     this.context.fillText("6", tileSize / 2 - 5, tileSize * 4 - 5);
     this.context.fillText("6", tileSize * 4 - 10, tileSize * 4 - tileSize / 2);
 
+    this.context.stroke()
 
-
-
-    this.context.strokeStyle = "black";
-    this.context.lineWidth = 10;
-    this.context.stroke();
   },
   tile: genPuzzle2(),
   makeMove: function(dir) {
@@ -424,9 +292,9 @@ var myGameArea = {
 function updateGameArea(dir) {
   myGameArea.clear();
   myGameArea.makeMove(dir);
+  myGameArea.draw();
   myGameArea.P1.update();
   myGameArea.P2.update();
-  myGameArea.draw();
   if (gameFinished) document.getElementById("WIN").innerHTML = "YOU WIN!";
 }
 
