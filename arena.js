@@ -126,14 +126,7 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   draw: function() {
-    // for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
-    //     this.context.moveTo(0.5 + p, 0);
-    //     this.context.lineTo(0.5 + p, this.canvas.height);
-    // }
-    // for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
-    //     this.context.moveTo(0, 0.5 + p);
-    //     this.context.lineTo(this.canvas.width, 0.5 + p);
-    // }
+
     this.context.moveTo(5, 5);
     this.context.lineTo(5, tileSize * 3);
     this.context.moveTo(5, 5);
