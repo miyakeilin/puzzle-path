@@ -2,4 +2,4 @@
 
 ## By Miya Keilin, Liam Chung, Mackie Zhou, and Stefan Morgan
 
-### A fun puzzle game involving synchronized movement, portals, and topology.
+A fun puzzle game involving synchronized movement, portals, and topology.
