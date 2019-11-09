@@ -8,7 +8,7 @@
 
 <body onload="startGame()">
   <header>
-    <h1>Play our game!</h1>
+    <h1 id="myH1">Play our game!</h1>
   </header>
   <script>
     function startGame() {
@@ -21,7 +21,8 @@
         this.canvas.width = 480;
         this.canvas.height = 270;
         this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[1]);
+        var h = document.getElementById("myH1");
+        document.body.insertAdjacentElement("afterend", this.canvas);
       }
     }
   </script>
