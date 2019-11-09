@@ -44,7 +44,7 @@ function genPuzzle2(){
   tile[0][0] = {left:[3,1], right:[0,0], up:[2,3], down:[1,0]}
   tile[0][1] = {left:[0,1], right:[0,1], up:[3,0], down:[1,1]}
   tile[0][2] = {left:[0,2], right:[0,2], up:[1,3], down:[1,2]}
-  tile[0][3] = {left:[0,2], right:[0,2], up:[3,2], down:[1,3]}
+  tile[0][3] = {left:[0,3], right:[0,3], up:[3,2], down:[1,3]}
 
   tile[1][0] = {left:[1,0], right:[1,1], up:[0,0], down:[2,0]}
   tile[1][1] = {left:[1,0], right:[1,1], up:[0,1], down:[1,1]}
@@ -59,35 +59,39 @@ function genPuzzle2(){
   tile[3][0] = {left:[0,1], right:[3,0], up:[2,0], down:[3,3]}
   tile[3][1] = {left:[3,1], right:[3,1], up:[2,1], down:[0,0]}
   tile[3][2] = {left:[3,2], right:[3,3], up:[3,2], down:[0,3]}
-  tile[3][3] = {left:[3,2], right:[3,0], up:[2,3], down:[3,3]}
+  tile[3][3] = {left:[3,2], right:[3,0], up:[3,3], down:[3,3]}
 
   return tile
 }
 
 function genArena(){
+  WIN_CONDITION = [[0,0],[0,2]]
+
   tile = new Array(dim);
   for(var i = 0; i < dim; i++){
+    tile[i] = new Array(dim);
     for(var j = 0; j < dim; j++){
       if(i == 0){
         if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i,j], down:[i+1,j]}
         else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i,j], down:[i+1,j]}
-        else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i,j], down:[i+1,j]}
+        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i,j], down:[i+1,j]}
       }
       else if (i == dim-1){
         if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i-1,j], down:[i,j]}
         else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i-1,j], down:[i,j]}
-        else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i,j]}
+        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i,j]}
       }
       else {
         if(j == 0)          tile[i][j] = {left:[i,j], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
         else if(j == dim-1) tile[i][j] = {left:[i,j-1], right:[i,j], up:[i-1,j], down:[i+1,j]}
-        else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+        else                tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
       }
     }
   }
+  return tile
 }
 
-function genTorus(){
+function genSphere(){
   tile = new Array(dim);
   for(var i = 0; i < dim; i++) {
     tile[i] = new Array(dim);
@@ -98,23 +102,17 @@ function genTorus(){
   return tile
 }
 
-function component(width, height, color, j, i) {
+function component(width, height, color, i,j) {
     this.width = width;
     this.height = height;
     this.i = i;
     this.j = j;
-    this.x = coordPos(i);
-    this.y = coordPos(j);
+    this.x = coordPos(j);
+    this.y = coordPos(i);
     this.update = function() {
         ctx = myGameArea.context;
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-    this.move = function(dir) {
-      [this.i,this.j] = myGameArea.tile[this.j][this.i]['left'] //IF UP DOWN LEFT PROBLEM MAYBE SWITCH I AND J?
-      console.log(this)
-      this.x = coordPos(this.i)
-      this.y = coordPos(this.j)
     }
 }
 
@@ -128,6 +126,8 @@ var myGameArea = {
         this.canvas.width = dim * tileSize;
         this.canvas.height = dim * tileSize;
         this.context = this.canvas.getContext("2d");
+
+        this.P1.update()
         myGameArea.draw();
 
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
@@ -148,14 +148,21 @@ var myGameArea = {
         this.context.strokeStyle = "black";
         this.context.stroke();
     },
-    tile : genPuzzle1(),
-    P1 : new component(playerSize,playerSize,"red",0,0)
+    tile : genSphere(),
+    makeMove : function (dir) {
+      var temp = this.tile[this.P1.i][this.P1.j][dir] //IF UP DOWN LEFT PROBLEM MAYBE SWITCH I AND J?
+      this.P1.i = temp[0]
+      this.P1.j = temp[1]
+      this.P1.x = coordPos(this.P1.j)
+      this.P1.y = coordPos(this.P1.i)
+    },
+    P1 : new component(playerSize,playerSize,"red",1,0)
 
 }
 
 function updateGameArea(dir) {
     myGameArea.clear();
-    myGameArea.P1.move(dir);
+    myGameArea.makeMove(dir);
     myGameArea.P1.update();
     myGameArea.draw();
 }
