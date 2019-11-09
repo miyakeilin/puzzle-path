@@ -129,13 +129,13 @@ var myGameArea = {
     this.context.beginPath()
     this.context.lineWidth = 1;
     this.context.strokeStyle = '#000';
-    for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
-        this.context.moveTo(0.5 + p, 0);
-        this.context.lineTo(0.5 + p, this.canvas.height);
+    for (var p = 0; p <= this.canvas.width + tileSize; p += tileSize) {
+      this.context.moveTo(0.5 + p, 0);
+      this.context.lineTo(0.5 + p, this.canvas.height);
     }
-    for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
-        this.context.moveTo(0, 0.5 + p);
-        this.context.lineTo(this.canvas.width, 0.5 + p);
+    for (var p = 0; p <= this.canvas.height + tileSize; p += tileSize) {
+      this.context.moveTo(0, 0.5 + p);
+      this.context.lineTo(this.canvas.width, 0.5 + p);
     }
     this.context.stroke()
 
@@ -143,7 +143,7 @@ var myGameArea = {
     this.context.beginPath()
     this.context.lineWidth = 3;
     this.context.strokeStyle = '#000';
-    this.context.arc(tileSize/2, tileSize/2, tileSize/3, 0, 2 * Math.PI);
+    this.context.arc(tileSize / 2, tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
     this.context.fillStyle = '#00cc66'
     this.context.fill()
     this.context.stroke()
@@ -151,7 +151,7 @@ var myGameArea = {
     this.context.beginPath()
     this.context.lineWidth = 3;
     this.context.strokeStyle = '#000';
-    this.context.arc(tileSize/2 + (tileSize * 2), tileSize/2, tileSize/3, 0, 2 * Math.PI);
+    this.context.arc(tileSize / 2 + (tileSize * 2), tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
     this.context.fillStyle = '#00cc66'
     this.context.fill()
     this.context.stroke()
@@ -191,8 +191,8 @@ var myGameArea = {
     this.context.moveTo(tileSize, tileSize * 3 - 5);
     this.context.lineTo(tileSize * 3, tileSize * 3 - 5);
 
-    this.fillText("2", tileSize / 2, 3);
-    this.font = "30px Arial";
+    this.context.fillText("2", tileSize / 2, 3);
+    this.context.font = "30px Arial";
     this.context.strokeStyle = "black";
     this.context.lineWidth = 10;
     this.context.stroke();
