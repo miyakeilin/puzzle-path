@@ -135,7 +135,7 @@ var myGameArea = {
     this.context.lineTo(5, tileSize * 3);
     this.context.moveTo(tileSize * 3, tileSize * 5);
     this.context.strokeStyle = "black";
-    thix.context.lineWidth = 10;
+    this.context.lineWidth = 10;
     this.context.stroke();
   },
   tile: genArena(),
