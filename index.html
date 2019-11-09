@@ -23,6 +23,9 @@
         this.context = this.canvas.getContext("2d");
         this.context.fillStyle = '#FF0000';
         this.context.fillRect(0, 0, 480, 270);
+        this.context.moveTo(0, 10);
+        this.context.lineTo(480, 10);
+        this.context.stroke();
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
