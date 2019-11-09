@@ -170,6 +170,9 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   draw: function() {
+    this.context.beginPath()
+    this.context.strokeStyle = "black";
+    this.context.lineWidth = 1
     for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
         this.context.moveTo(0.5 + p, 0);
         this.context.lineTo(0.5 + p, this.canvas.height);
@@ -178,7 +181,6 @@ var myGameArea = {
         this.context.moveTo(0, 0.5 + p);
         this.context.lineTo(this.canvas.width, 0.5 + p);
     }
-    this.context.strokeStyle = "black";
     this.context.stroke();
 
     this.context.beginPath()
@@ -196,7 +198,11 @@ var myGameArea = {
     this.context.fillStyle = '#00cc66'
     this.context.fill()
     this.context.stroke()
-    
+
+    this.context.beginPath()
+    this.context.strokeStyle = "black";
+    this.context.lineWidth = 10;
+
     this.context.moveTo(5, tileSize);
     this.context.lineTo(5, tileSize * 3);
 
@@ -233,6 +239,13 @@ var myGameArea = {
     this.context.moveTo(tileSize * 3, tileSize * 4 - 5);
     this.context.lineTo(tileSize * 4, tileSize * 4 - 5);
 
+    this.context.stroke();
+
+    this.context.beginPath()
+    this.context.fillStyle = "black";
+    this.context.lineWidth = 10;
+    this.context.font = "10px Arial";
+
     this.context.fillText("1", 5, tileSize / 2);
     this.context.fillText("1", tileSize * 2 - tileSize / 2 - 5, tileSize * 4 - 5);
 
@@ -251,12 +264,8 @@ var myGameArea = {
     this.context.fillText("6", tileSize / 2 - 5, tileSize * 4 - 5);
     this.context.fillText("6", tileSize * 4 - 10, tileSize * 4 - tileSize / 2);
 
+    this.context.stroke()
 
-
-
-    this.context.strokeStyle = "black";
-    this.context.lineWidth = 10;
-    this.context.stroke();
   },
   tile: genPuzzle2(),
   makeMove: function(dir) {
@@ -283,9 +292,9 @@ var myGameArea = {
 function updateGameArea(dir) {
   myGameArea.clear();
   myGameArea.makeMove(dir);
+  myGameArea.draw();
   myGameArea.P1.update();
   myGameArea.P2.update();
-  myGameArea.draw();
   if (gameFinished) document.getElementById("WIN").innerHTML = "YOU WIN!";
 }
 
