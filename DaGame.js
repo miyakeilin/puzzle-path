@@ -9,7 +9,22 @@ var tile = new Array(dim);
 for(var i = 0; i < dim; i++) {
   tile[i] = new Array(dim);
   for(var j = 0; j < dim; j++){
-    tile[i][j] = {left:[i,j], up:[i+1,j], down:[i-1,j], right:[i,j+1]}
+    if(i == 0){
+      if(j > 1)          tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else if(j < dim-1) tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+    }
+    else if (i == dim-1){
+      if(j > 1)          tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else if(j < dim-1) tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+    }
+    else {
+      if(j > 1)          tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else if(j < dim-1) tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+      else               tile[i][j] = {left:[i,j-1], right:[i,j+1], up:[i-1,j], down:[i+1,j]}
+    }
+
   }
 }
 
