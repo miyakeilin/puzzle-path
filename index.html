@@ -13,34 +13,45 @@
   <script>
     function startGame() {
       myGameArea.start();
+      myGamePiece = new component(30, 30, "red", 10, 120);
     }
-
+    var myGamePiece;
     var myGameArea = {
       canvas: document.createElement("canvas"),
       start: function() {
-        this.canvas.width = 450;
-        this.canvas.height = 250;
-        this.context = this.canvas.getContext("2d");
-        this.context.fillStyle = '#FF0000';
-        this.context.fillRect(0, 0, 450, 250);
-        this.context.moveTo(0, 50);
-        this.context.lineTo(480, 50);
-        this.context.stroke();
-        this.context.moveTo(0, 100);
-        this.context.lineTo(480, 100);
-        this.context.stroke();
-        this.context.moveTo(0, 150);
-        this.context.lineTo(480, 150);
-        this.context.stroke();
-        this.context.moveTo(50, 0);
-        this.context.lineTo(50, 250);
-        this.context.stroke();
-        this.canvas.addEventListener("click", function() {
-          alert("Hello World");
-        });
+        // this.canvas.width = 450;
+        // this.canvas.height = 250;
+        // this.context = this.canvas.getContext("2d");
+        // this.context.fillStyle = '#FF0000';
+        // this.context.fillRect(0, 0, 450, 250);
+        // this.context.moveTo(0, 50);
+        // this.context.lineTo(480, 50);
+        // this.context.stroke();
+        // this.context.moveTo(0, 100);
+        // this.context.lineTo(480, 100);
+        // this.context.stroke();
+        // this.context.moveTo(0, 150);
+        // this.context.lineTo(480, 150);
+        // this.context.stroke();
+        // this.context.moveTo(50, 0);
+        // this.context.lineTo(50, 250);
+        // this.context.stroke();
+        // this.canvas.addEventListener("click", function() {
+        //   alert("Hello World");
+        // });
         var h = document.getElementById("myH1");
         document.body.insertAdjacentElement("afterend", this.canvas);
       }
+    }
+
+    function component(width, height, color, x, y) {
+      this.width = width;
+      this.height = height;
+      this.x = x;
+      this.y = y;
+      ctx = myGameArea.context;
+      ctx.fillStyle = color;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
     }
   </script>
 </body>
