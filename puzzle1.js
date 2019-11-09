@@ -139,9 +139,8 @@ var myGameArea = {
     }
     this.context.stroke()
 
-
     this.context.beginPath()
-    this.context.lineWidth = 3;
+    this.context.lineWidth = 1;
     this.context.strokeStyle = '#000';
     this.context.arc(tileSize / 2, tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
     this.context.fillStyle = '#00cc66'
@@ -149,7 +148,7 @@ var myGameArea = {
     this.context.stroke()
 
     this.context.beginPath()
-    this.context.lineWidth = 3;
+    this.context.lineWidth = 1;
     this.context.strokeStyle = '#000';
     this.context.arc(tileSize / 2 + (tileSize * 2), tileSize / 2, tileSize / 3, 0, 2 * Math.PI);
     this.context.fillStyle = '#00cc66'
@@ -174,7 +173,6 @@ var myGameArea = {
     this.context.fillText("1", tileSize * 3 - 10, tileSize * 3 - tileSize / 2);
 
     this.context.stroke();
-
 
 
     this.context.beginPath()
