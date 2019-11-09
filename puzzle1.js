@@ -126,14 +126,58 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   draw: function() {
-    // for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
-    //     this.context.moveTo(0.5 + p, 0);
-    //     this.context.lineTo(0.5 + p, this.canvas.height);
-    // }
-    // for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
-    //     this.context.moveTo(0, 0.5 + p);
-    //     this.context.lineTo(this.canvas.width, 0.5 + p);
-    // }
+    this.context.beginPath()
+    this.context.lineWidth = 1;
+    this.context.strokeStyle = '#000';
+    for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
+        this.context.moveTo(0.5 + p, 0);
+        this.context.lineTo(0.5 + p, this.canvas.height);
+    }
+    for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
+        this.context.moveTo(0, 0.5 + p);
+        this.context.lineTo(this.canvas.width, 0.5 + p);
+    }
+    this.context.stroke()
+
+
+    this.context.beginPath()
+    this.context.lineWidth = 3;
+    this.context.strokeStyle = '#000';
+    this.context.arc(tileSize/2, tileSize/2, tileSize/3, 0, 2 * Math.PI);
+    this.context.fillStyle = '#00cc66'
+    this.context.fill()
+    this.context.stroke()
+
+    this.context.beginPath()
+    this.context.lineWidth = 3;
+    this.context.strokeStyle = '#000';
+    this.context.arc(tileSize/2 + (tileSize * 2), tileSize/2, tileSize/3, 0, 2 * Math.PI);
+    this.context.fillStyle = '#00cc66'
+    this.context.fill()
+    this.context.stroke()
+
+    this.context.beginPath()
+    this.context.font = "10px Arial";
+    this.context.fillStyle = "black";
+    this.context.lineWidth = 10;
+
+    this.context.fillText("2", tileSize / 2 - 5, 10);
+    this.context.fillText("2", tileSize / 2 - 5, tileSize * 3 - 5);
+
+    this.context.fillText("4", 5, tileSize / 2);
+    this.context.fillText("4", tileSize * 3 - tileSize / 2 - 3, 10);
+
+    this.context.fillText("3", tileSize * 2 - tileSize / 2, 10);
+    this.context.fillText("3", tileSize * 3 - 10, tileSize * 2 - tileSize / 2);
+
+    this.context.fillText("1", 5, tileSize * 3 - tileSize / 2);
+    this.context.fillText("1", tileSize * 3 - 10, tileSize * 3 - tileSize / 2);
+
+    this.context.stroke();
+
+
+
+    this.context.beginPath()
     this.context.moveTo(0 + 5, tileSize);
     this.context.lineTo(0 + 5, tileSize * 2);
     this.context.moveTo(tileSize, 0);
@@ -178,9 +222,9 @@ var myGameArea = {
 function updateGameArea(dir) {
   myGameArea.clear();
   myGameArea.makeMove(dir);
+  myGameArea.draw();
   myGameArea.P1.update();
   myGameArea.P2.update();
-  myGameArea.draw();
   if (gameFinished) document.getElementById("WIN").innerHTML = "YOU WIN!";
 }
 
