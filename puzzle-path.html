@@ -5,7 +5,7 @@
         <style>
             canvas {
                 background-color:aqua;
-                
+                border: 1px solid black;
             }
         </style>
     </head>
@@ -67,12 +67,12 @@
                 },
                 draw : function() { // draws the borders
                     for (var p = 0; p <= this.canvas.width+tileSize; p += tileSize) {
-                        this.context.moveTo(0.5 + p, 0);
-                        this.context.lineTo(0.5 + p, this.canvas.height);
+                        this.context.moveTo(p, 0);
+                        this.context.lineTo(p, this.canvas.height);
                     }
                     for (var p = 0; p <= this.canvas.height+tileSize; p += tileSize) {
-                        this.context.moveTo(0, 0.5 + p);
-                        this.context.lineTo(this.canvas.width, 0.5 + p);
+                        this.context.moveTo(0, p);
+                        this.context.lineTo(this.canvas.width, p);
                     }
                     this.context.strokeStyle = "black";
                     this.context.stroke();
