@@ -1,5 +1,5 @@
-
-word = 'Hello World'
+echo hello
+# word = 'Hello World'
 # def hello():
 #     print('Hello World')
 
