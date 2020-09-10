@@ -1,5 +1,5 @@
-echo hello
-# word = 'Hello World'
+
+word = 'Hello World'
 # def hello():
 #     print('Hello World')
 
