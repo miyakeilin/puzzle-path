@@ -1,6 +1,6 @@
 
-word = 'Hello World'
-# def hello():
-#     print('Hello World')
+# word = 'Hello World'
+def hello():
+    print('Hello World')
 
-# hello()
+hello()
